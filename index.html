@@ -34,6 +34,9 @@
     .ap-pill:hover{background:rgba(255,255,255,0.04)}
     .ap-pill.active{background:var(--ACCENT); color:#0B1620; border:none}
 
+    /* Little label above toggle */
+    .ap-tag{display:inline-block; font-size:.8rem; color:#DDE5EB; background:var(--PANEL); border:1px solid var(--BORDER); border-radius:9999px; padding:.25rem .6rem}
+
     /* Spotlight sizing */
     .spotlight-card{ height:auto }
     @media (min-width:768px){ .spotlight-card{ height:200px; display:flex; flex-direction:column; justify-content:space-between } }
@@ -43,10 +46,6 @@
 
     /* Icon square */
     .icon-square{display:grid; place-items:center; width:2rem; height:2rem; border:1px solid var(--BORDER); border-radius:.5rem; color:var(--ACCENT); background:var(--PANEL)}
-
-    /* Top gradient */
-    
-    
 
     /* Ensure logo stays perfectly square */
     .logo{aspect-ratio:1/1; object-fit:contain; display:inline-block}
@@ -78,16 +77,18 @@
 
   <!-- HERO -->
   <section class="relative overflow-hidden pt-16">
-    <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative flex flex-col items-center gap-6 py-12 text-center md:py-16">
+    <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative flex flex-col items-center gap-4 py-12 text-center md:py-16">
+      <!-- Label above toggle -->
+      <div class="ap-tag">The Agentic Marketplace</div>
       <!-- Toggle -->
       <div class="flex items-center gap-1 rounded-full p-1 panel">
         <button id="pill-builder" class="ap-pill active">I'm a builder</button>
         <button id="pill-hiring" class="ap-pill">I'm hiring</button>
       </div>
 
-      <h1 id="headline" class="ap-heading max-w-3xl text-4xl sm:text-5xl font-normal leading-tight tracking-tight" style="color:var(--HEADING)">Build. Sell. Get paid.</h1>
+      <h1 id="headline" class="ap-heading max-w-3xl text-4xl sm:text-5xl font-normal leading-tight tracking-tight" style="color:var(--HEADING)">Turn agent teams into business.</h1>
 
-      <p id="subline" class="max-w-2xl text-base sm:text-lg" style="color:var(--BODY)">Market your expertise, sell services & agent teams, and land gigs—on one platform.</p>
+      <p id="subline" class="max-w-2xl text-base sm:text-lg" style="color:var(--BODY)">Build. Launch. Monetize. All on one unified platform.</p>
 
       <div class="flex items-center justify-center gap-3">
         <a href="#signup" class="ap-solid-btn">Sign up</a>
@@ -101,9 +102,11 @@
   <section class="py-12 md:py-16">
     <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
       <div class="mb-6 text-center">
-        <h2 class="ap-heading text-3xl sm:text-4xl font-normal" style="color:var(--HEADING)">Primary features</h2>
+        <h2 id="primary-title" class="ap-heading text-3xl sm:text-4xl font-normal" style="color:var(--HEADING)">The platform that turns your AI agent teams into business.</h2>
+        <!-- NEW short description under the section title -->
+        <p id="primary-desc" class="mt-2 text-sm max-w-2xl mx-auto" style="color:var(--BODY)">End‑to‑end on one unified platform—profiles, listings, contracts, and payouts.</p>
       </div>
-      <div id="spotlight" class="grid gap-4 md:grid-cols-2"></div>
+      <div id="spotlight" class="grid gap-4 md:grid-cols-3"></div>
     </div>
   </section>
 
@@ -166,7 +169,7 @@
   <!-- CTA FOOTER -->
   <section class="py-12 md:py-16">
     <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 text-center">
-      <h3 id="cta-headline" class="ap-heading text-xl font-normal" style="color:var(--HEADING)">Build. Sell. Get paid.</h3>
+      <h3 id="cta-headline" class="ap-heading text-xl font-normal" style="color:var(--HEADING)">Turn agent teams into business.</h3>
       <p id="cta-sub" class="mt-1 text-sm" style="color:var(--BODY)"></p>
       <div class="mt-4 flex items-center justify-center gap-3">
         <a href="#signup" class="ap-solid-btn">Sign up</a>
@@ -187,6 +190,7 @@
           <a href="https://talentgenius.io" class="hover:underline">TalentGenius</a>
           <a href="https://talentgenius.io/agentpowered" class="hover:underline">Learn more</a>
           <a href="https://talentgenius.io/agentpowered/contact" class="hover:underline">Contact</a>
+          <a href="https://talentgenius.io/legal/privacy-policy" class="hover:underline">Privacy</a>
         </nav>
         <span>© 2025 TalentGenius Inc.</span>
       </div>
@@ -198,49 +202,55 @@
        COPY & CONTENT MODELS
        ========================= */
     const spotlightBuilder = [
-      { title: "Sell services & agent teams", blurb: "Publish offerings, set pricing, and take on work.", icon: "shopping-cart" },
-      { title: "Get work / gigs", blurb: "Match with active demand from companies.", icon: "briefcase" }
+      { title: "Build & Launch", blurb: "Create your agent teams and bring agent-powered solutions to market.", icon: "rocket" },
+      { title: "Market & Grow", blurb: "Promote your team, showcase expertise, and win new work.", icon: "megaphone" },
+      { title: "Manage & Simplify", blurb: "Let AgentPowered handle payments and operations so you can focus on building.", icon: "settings" }
     ];
 
     const spotlightHiring = [
-      { title: "Discover and hire builders", blurb: "Find vetted AI talent matched to your needs.", icon: "users" },
-      { title: "Discover and hire teams", blurb: "Spin up ready‑to‑go agent teams.", icon: "layers" }
+      { title: "Discover Solutions", blurb: "Find ready-to-deploy solutions powered by expert agent teams.", icon: "compass" },
+      { title: "Hire Expert Builders", blurb: "Connect with skilled builders to solve your unique challenges.", icon: "users" },
+      { title: "Trusted Middleman", blurb: "AgentPowered acts as your secure marketplace partner. You hire through us, and we ensure quality, trust, and smooth collaboration.", icon: "shield" }
     ];
 
     const featuresBuilder = [
       { title: "Market yourself (profile)", description: "Pro profile with skills, portfolio, ratings, and usage signals.", icon: "star" },
-      { title: "Contracting", description: "Proposals, NDAs, SOW, milestones — handled in‑app.", icon: "file-text" },
-      { title: "Instant payouts", description: "Get paid fast with escrow and automatic splits.", icon: "credit-card" }
+      { title: "Contracting", description: "Proposals and agreements handled in‑app.", icon: "file-text" },
+      { title: "Instant payouts", description: "Get paid fast with built‑in payouts.", icon: "credit-card" }
     ];
 
     const featuresHiring = [
       { title: "Post work listings for bidding", description: "Describe the project and invite proposals.", icon: "megaphone" },
-      { title: "Simplified payments & contracts", description: "One place for NDAs, SOWs, invoices, and payouts.", icon: "file-check" },
+      { title: "Simplified payments & contracts", description: "One place for documents, invoices, and payouts.", icon: "file-check" },
       { title: "Faster hiring", description: "Shortlist, schedule, and kick off in days, not weeks.", icon: "rocket" }
     ];
 
     const stepsBuilder = [
       { title: "Set up profile", body: "Add skills, samples, and agent listings.", icon: "badge-check" },
       { title: "List services/teams or find work", body: "Publish offerings or browse live gigs.", icon: "list" },
-      { title: "Get paid", body: "Deliver milestones and cash out instantly.", icon: "credit-card" }
+      { title: "Get paid", body: "Deliver work and get paid quickly.", icon: "credit-card" }
     ];
 
     const stepsHiring = [
       { title: "List work or search builders", body: "Post a listing or browse talent.", icon: "search" },
       { title: "Review experts", body: "Compare profiles, proposals, and fit.", icon: "users" },
-      { title: "Kick off securely", body: "Contracts + escrow from the first milestone.", icon: "shield-check" }
+      { title: "Kick off securely", body: "Agreements and payments handled from day one.", icon: "shield-check" }
     ];
 
     const copy = {
       builder: {
-        hero: { title: "Build. Sell. Get paid.", sub: "Market your expertise, sell services & agent teams, and land gigs—on one platform." },
+        hero: { title: "Turn agent teams into business.", sub: "Build. Launch. Monetize. All on one unified platform." },
+        primaryTitle: "The platform that turns your AI agent teams into business.",
+        primaryDesc: "End‑to‑end on one unified platform—profiles, listings, contracts, and payouts.",
         featuresTitle: "Do more with less overhead",
         featuresSub: "Seamless handoff from your offerings to active projects.",
         startSub: "3 steps and you're earning.",
         ctaSub: "Create your profile and publish your first service.",
       },
       hiring: {
-        hero: { title: "Launch your AI workforce.", sub: "Discover AI builders and agent teams. Post work and kick off fast." },
+        hero: { title: "Find solutions powered by agents.", sub: "Discover expert AI builders and agent teams. Post work and kick off fast— all on one platform." },
+        primaryTitle: "The platform to find agent-powered solutions.",
+        primaryDesc: "End‑to‑end on one unified platform—discover solutions, contract securely, and pay.",
         featuresTitle: "Everything you need for faster hiring",
         featuresSub: "Evaluate, contract, and pay in one flow — no context switching.",
         startSub: "3 steps to get work done.",
@@ -263,13 +273,17 @@
     const subline = document.getElementById('subline');
     const ctaHeadline = document.getElementById('cta-headline');
     const ctaSub = document.getElementById('cta-sub');
+    const primaryTitle = document.getElementById('primary-title');
+    const primaryDesc = document.getElementById('primary-desc');
 
     // Image mapping for Primary features (spotlight)
     const spotlightImages = {
-      "Sell services & agent teams": "https://i.imgur.com/kSE2The.png",
-      "Get work / gigs": "https://i.imgur.com/ZOxKIq1.png",
-      "Discover and hire builders": "https://i.imgur.com/ZOxKIq1.png",
-      "Discover and hire teams": "https://i.imgur.com/ZOxKIq1.png"
+      "Build & Launch": "https://i.imgur.com/kSE2The.png",
+      "Market & Grow": "https://i.imgur.com/ZOxKIq1.png",
+      "Manage & Simplify": "https://i.imgur.com/ZOxKIq1.png",
+      "Discover Solutions": "https://i.imgur.com/ZOxKIq1.png",
+      "Hire Expert Builders": "https://i.imgur.com/ZOxKIq1.png",
+      "Trusted Middleman": "https://i.imgur.com/ZOxKIq1.png"
     };
 
     function imageBoxFor(title){
@@ -294,7 +308,7 @@
 
     const tabInbox = document.getElementById('tab-inbox');
     const tabContracts = document.getElementById('tab-contracts');
-        const tabPayments = document.getElementById('tab-payments');
+    const tabPayments = document.getElementById('tab-payments');
 
     const h = (tag, cls = '', attrs = {}) => { const el = document.createElement(tag); if(cls) el.className = cls; Object.entries(attrs).forEach(([k,v])=> el.setAttribute(k,v)); return el; };
 
@@ -376,7 +390,12 @@
       lucide.createIcons();
     }
 
-    // Dashboard data
+    function renderPrimaryTitle(){
+      primaryTitle.textContent = copy[mode].primaryTitle;
+      primaryDesc.textContent = copy[mode].primaryDesc;
+    }
+
+    // Dashboard data (demo)
     const seed = {
       builder: {
         projects: [
@@ -386,18 +405,18 @@
         ],
         inbox: [
           { from:'Ava (ACME Co.)', text:'Can you scope the onboarding flow?', time:'2m' },
-          { from:'Liam (Nova Labs)', text:'Approved milestone 1. Payout queued.', time:'1h' },
+          { from:'Liam (Nova Labs)', text:'Approved deliverable. Payout queued.', time:'1h' },
           { from:'Maya (Ventures)', text:'Can you share timeline options?', time:'3h' }
         ],
         contracts: [
-          { title:'SOW — ACME storefront', status:'Signed', value:'$8,400' },
-          { title:'NDA — Nova Labs', status:'Signed', value:'—' },
-          { title:'MSA — Orbit Inc.', status:'Signed', value:'—' }
+          { title:'Project agreement — ACME storefront', status:'Signed', value:'$8,400' },
+          { title:'Agreement — Nova Labs', status:'Signed', value:'—' },
+          { title:'Agreement — Orbit Inc.', status:'Signed', value:'—' }
         ],
         payments: [
-          { title:'Payout — M1', amount:'$2,800', status:'Sent' },
-          { title:'Deposit — ACME', amount:'$1,000', status:'Escrow' },
-          { title:'M2 payout', amount:'$3,200', status:'Pending' }
+          { title:'First payout', amount:'$2,800', status:'Sent' },
+          { title:'Deposit — ACME', amount:'$1,000', status:'Processing' },
+          { title:'Second payout', amount:'$3,200', status:'Pending' }
         ]
       },
       hiring: {
@@ -411,13 +430,13 @@
           { from:'Ravi (PM)', text:'Let’s align on deliverables Mon/Tue.', time:'5h' }
         ],
         contracts: [
-          { title:'MSA — Builder Collective', status:'Awaiting signature', value:'—' },
-          { title:'SOW — Lead routing', status:'Draft', value:'$12,000' },
-          { title:'NDA — Alpha Builders', status:'Signed', value:'—' }
+          { title:'Agreement — Builder Collective', status:'Awaiting signature', value:'—' },
+          { title:'Project agreement — Lead routing', status:'Draft', value:'$12,000' },
+          { title:'Agreement — Alpha Builders', status:'Signed', value:'—' }
         ],
         payments: [
-          { title:'Initial deposit', amount:'$3,600', status:'Escrow' },
-          { title:'M1 payout', amount:'$3,600', status:'Queued' },
+          { title:'Initial deposit', amount:'$3,600', status:'Processing' },
+          { title:'First payout', amount:'$3,600', status:'Queued' },
           { title:'Final payment', amount:'$4,800', status:'Pending' }
         ]
       }
@@ -427,7 +446,7 @@
       projectList.innerHTML = '';
       seed[mode].projects.forEach(p=>{
         const row = h('button','w-full text-left panel rounded-md px-3 py-2 hover:bg-[#20262D] flex items-center justify-between');
-        row.innerHTML = `<span class="text-xs" style="color:var(--HEADING)">${p.name}</span>` + (p.unread? `<span class="text-[10px] px-1.5 py-0.5 rounded-full" style="background:var(--ACCENT); color:#0B1620">${p.unread}</span>`: '');
+        row.innerHTML = `<span class=\"text-xs\" style=\"color:var(--HEADING)\">${p.name}</span>` + (p.unread? `<span class=\"text-[10px] px-1.5 py-0.5 rounded-full\" style=\"background:var(--ACCENT); color:#0B1620\">${p.unread}</span>`: '');
         projectList.appendChild(row);
       });
     }
@@ -471,6 +490,7 @@
       subline.textContent = copy[mode].hero.sub;
       ctaHeadline.textContent = copy[mode].hero.title;
       ctaSub.textContent = copy[mode].ctaSub;
+      renderPrimaryTitle();
     }
 
     function setMode(next){
