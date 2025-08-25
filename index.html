@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AgentPowered — Static Landing</title>
+  <!-- Tailwind CDN for utility classes -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root{
+      /* Specified palette */
+      --ACCENT:#03FFB2;        /* Highlight green */
+      --BG:#191E25;            /* Background */
+      --PANEL:#1D232A;         /* Overlay */
+      --BORDER:#2E2E2E;        /* Overlay border */
+      --BODY:#96A0AA;          /* Body copy */
+      --HEADING:#F0F3F5;       /* Headings */
+    }
+    html,body{height:100%}
+    body{position:relative; background:var(--BG); color:#fff; -webkit-font-smoothing:antialiased; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans"; background-image: radial-gradient(circle at 50% 0, rgba(3,255,178,.135), rgba(3,255,178,0) 40%); background-repeat: no-repeat; background-size: 800px 800px; background-position: 50% 0}
+    .hairline{height:1px; width:100%; background:var(--BORDER)}
+    .panel{background:var(--PANEL); border:1px solid var(--BORDER)}
+
+    /* Buttons */
+    .ap-solid-btn{border:1px solid var(--ACCENT); background:var(--ACCENT); color:#0B1620; border-radius:.6rem; padding:.35rem 1.2rem; font-weight:500; font-size:1rem; letter-spacing:.15px; transition:opacity .15s ease}
+    .ap-solid-btn:hover{opacity:.75}
+
+    .nav-signup{ font-size:.75rem !important; font-weight:500 !important; padding:.3rem 1rem; }
+
+    /* Toggle pills */
+    .ap-pill{min-width:7rem; border-radius:9999px; padding:.3rem .75rem; font-weight:400; font-size:.8rem; transition:all .15s ease; color:#DDE5EB; border:none}
+    .ap-pill:hover{background:rgba(255,255,255,0.04)}
+    .ap-pill.active{background:var(--ACCENT); color:#0B1620; border:none}
+
+    /* Spotlight sizing */
+    .spotlight-card{ height:auto }
+    @media (min-width:768px){ .spotlight-card{ height:200px; display:flex; flex-direction:column; justify-content:space-between } }
+    .spotlight-card .icon-square i{ width:1.5rem; height:1.5rem }
+    .spotlight-title{ font-size:1.125rem }
+    @media (min-width:640px){ .spotlight-title{ font-size:1.25rem } }
+
+    /* Icon square */
+    .icon-square{display:grid; place-items:center; width:2rem; height:2rem; border:1px solid var(--BORDER); border-radius:.5rem; color:var(--ACCENT); background:var(--PANEL)}
+
+    /* Top gradient */
+    
+    
+
+    /* Ensure logo stays perfectly square */
+    .logo{aspect-ratio:1/1; object-fit:contain; display:inline-block}
+
+    /* Navbar blur */
+    .nav-blur{backdrop-filter:saturate(120%) blur(8px); background:rgba(25,30,37,.65)}
+      /* Spotlight image wrapper */
+    .img-wrap{ position:relative; width:100%; border:1px solid var(--BORDER); border-radius:.5rem; overflow:hidden }
+    .img-wrap img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover }
+
+    /* Override default spotlight sizing to fit image */
+    .spotlight-card{ height:auto !important; display:flex; flex-direction:column; gap:.75rem }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR (sticky) -->
+  <div class="fixed top-0 left-0 right-0 z-50 nav-blur border-b" style="border-color:var(--BORDER)">
+    <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 flex h-14 items-center justify-between">
+      <a href="#" class="flex items-center gap-2">
+        <img src="https://framerusercontent.com/assets/paDh48hPnfMJWRqktvJeAU446M.png" alt="AgentPowered Logo" class="logo w-5 h-5"/>
+        <span class="ap-heading text-base font-semibold tracking-tight" style="color:var(--HEADING)">AgentPowered</span>
+      </a>
+      <div class="flex items-center gap-2">
+        <a href="#login" class="hidden sm:inline-block px-3 py-2 text-sm" style="color:var(--BODY)">Log in</a>
+        <a href="#signup" class="ap-solid-btn nav-signup">Sign up</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden pt-16">
+    <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative flex flex-col items-center gap-6 py-12 text-center md:py-16">
+      <!-- Toggle -->
+      <div class="flex items-center gap-1 rounded-full p-1 panel">
+        <button id="pill-builder" class="ap-pill active">I'm a builder</button>
+        <button id="pill-hiring" class="ap-pill">I'm hiring</button>
+      </div>
+
+      <h1 id="headline" class="ap-heading max-w-3xl text-4xl sm:text-5xl font-normal leading-tight tracking-tight" style="color:var(--HEADING)">Build. Sell. Get paid.</h1>
+
+      <p id="subline" class="max-w-2xl text-base sm:text-lg" style="color:var(--BODY)">Market your expertise, sell services & agent teams, and land gigs—on one platform.</p>
+
+      <div class="flex items-center justify-center gap-3">
+        <a href="#signup" class="ap-solid-btn">Sign up</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8"><div class="hairline"></div></div>
+
+  <!-- PRIMARY FEATURES (spotlight) -->
+  <section class="py-12 md:py-16">
+    <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
+      <div class="mb-6 text-center">
+        <h2 class="ap-heading text-3xl sm:text-4xl font-normal" style="color:var(--HEADING)">Primary features</h2>
+      </div>
+      <div id="spotlight" class="grid gap-4 md:grid-cols-2"></div>
+    </div>
+  </section>
+
+  <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8"><div class="hairline"></div></div>
+
+  <!-- SECONDARY FEATURES -->
+  <section class="py-12 md:py-16">
+    <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
+      <div class="mb-6 text-center">
+        <h2 id="features-title" class="ap-heading text-3xl sm:text-4xl font-normal" style="color:var(--HEADING)">Do more with less overhead</h2>
+        <p id="features-sub" class="mt-1 text-sm" style="color:var(--BODY)">—</p>
+      </div>
+      <div id="features-grid" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
+    </div>
+  </section>
+
+  <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8"><div class="hairline"></div></div>
+
+  <!-- HOW TO GET STARTED -->
+  <section class="py-12 md:py-16">
+    <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
+      <div class="mb-6 text-center">
+        <h2 class="ap-heading text-3xl sm:text-4xl font-normal" style="color:var(--HEADING)">How to get started</h2>
+        <p id="kickstart-sub" class="mt-1 text-sm" style="color:var(--BODY)"></p>
+      </div>
+      <div id="steps-grid" class="grid gap-4 md:grid-cols-3"></div>
+    </div>
+  </section>
+
+  <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8"><div class="hairline"></div></div>
+
+  <!-- DASHBOARD / CONTROL CENTER (interactive) -->
+  <section class="py-12 md:py-16">
+    <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
+      <div class="mb-6 text-center">
+        <h2 class="ap-heading text-3xl sm:text-4xl font-normal" style="color:var(--HEADING)">Your control center</h2>
+        <p class="mt-1 text-sm" style="color:var(--BODY)">A streamlined dashboard for chat, contracts, and payouts.</p>
+      </div>
+      <div id="dashboard" class="panel rounded-xl p-0 overflow-hidden">
+        <!-- Tabs -->
+        <div class="flex items-center gap-2 border-b px-3 py-2" style="border-color:var(--BORDER)">
+          <button class="ap-pill active" id="tab-inbox" style="min-width:auto">Inbox</button>
+          <button class="ap-pill" id="tab-contracts" style="min-width:auto">Contracts</button>
+          <button class="ap-pill" id="tab-payments" style="min-width:auto">Payments</button>
+        </div>
+        <!-- Body -->
+        <div class="grid md:grid-cols-3">
+          <aside class="border-r p-3" style="border-color:var(--BORDER)">
+            <h4 class="ap-heading text-sm font-normal mb-2" style="color:var(--HEADING)">Projects</h4>
+            <div id="projectList" class="space-y-2"></div>
+          </aside>
+          <main class="md:col-span-2 p-3">
+            <div id="dashContent" class="space-y-3"></div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FOOTER -->
+  <section class="py-12 md:py-16">
+    <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 text-center">
+      <h3 id="cta-headline" class="ap-heading text-xl font-normal" style="color:var(--HEADING)">Build. Sell. Get paid.</h3>
+      <p id="cta-sub" class="mt-1 text-sm" style="color:var(--BODY)"></p>
+      <div class="mt-4 flex items-center justify-center gap-3">
+        <a href="#signup" class="ap-solid-btn">Sign up</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (with links) -->
+  <footer class="pb-14 pt-8">
+    <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
+      <div class="hairline"></div>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-xs" style="color:var(--BODY)">
+        <div class="flex items-center gap-2">
+          <img src="https://framerusercontent.com/assets/paDh48hPnfMJWRqktvJeAU446M.png" alt="AgentPowered Logo" class="logo w-5 h-5"/>
+          <span class="ap-heading text-base font-semibold" style="color:var(--HEADING)">AgentPowered</span>
+        </div>
+        <nav class="flex items-center gap-4">
+          <a href="https://talentgenius.io" class="hover:underline">TalentGenius</a>
+          <a href="https://talentgenius.io/agentpowered" class="hover:underline">Learn more</a>
+          <a href="https://talentgenius.io/agentpowered/contact" class="hover:underline">Contact</a>
+        </nav>
+        <span>© 2025 TalentGenius Inc.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================
+       COPY & CONTENT MODELS
+       ========================= */
+    const spotlightBuilder = [
+      { title: "Sell services & agent teams", blurb: "Publish offerings, set pricing, and take on work.", icon: "shopping-cart" },
+      { title: "Get work / gigs", blurb: "Match with active demand from companies.", icon: "briefcase" }
+    ];
+
+    const spotlightHiring = [
+      { title: "Discover and hire builders", blurb: "Find vetted AI talent matched to your needs.", icon: "users" },
+      { title: "Discover and hire teams", blurb: "Spin up ready‑to‑go agent teams.", icon: "layers" }
+    ];
+
+    const featuresBuilder = [
+      { title: "Market yourself (profile)", description: "Pro profile with skills, portfolio, ratings, and usage signals.", icon: "star" },
+      { title: "Contracting", description: "Proposals, NDAs, SOW, milestones — handled in‑app.", icon: "file-text" },
+      { title: "Instant payouts", description: "Get paid fast with escrow and automatic splits.", icon: "credit-card" }
+    ];
+
+    const featuresHiring = [
+      { title: "Post work listings for bidding", description: "Describe the project and invite proposals.", icon: "megaphone" },
+      { title: "Simplified payments & contracts", description: "One place for NDAs, SOWs, invoices, and payouts.", icon: "file-check" },
+      { title: "Faster hiring", description: "Shortlist, schedule, and kick off in days, not weeks.", icon: "rocket" }
+    ];
+
+    const stepsBuilder = [
+      { title: "Set up profile", body: "Add skills, samples, and agent listings.", icon: "badge-check" },
+      { title: "List services/teams or find work", body: "Publish offerings or browse live gigs.", icon: "list" },
+      { title: "Get paid", body: "Deliver milestones and cash out instantly.", icon: "credit-card" }
+    ];
+
+    const stepsHiring = [
+      { title: "List work or search builders", body: "Post a listing or browse talent.", icon: "search" },
+      { title: "Review experts", body: "Compare profiles, proposals, and fit.", icon: "users" },
+      { title: "Kick off securely", body: "Contracts + escrow from the first milestone.", icon: "shield-check" }
+    ];
+
+    const copy = {
+      builder: {
+        hero: { title: "Build. Sell. Get paid.", sub: "Market your expertise, sell services & agent teams, and land gigs—on one platform." },
+        featuresTitle: "Do more with less overhead",
+        featuresSub: "Seamless handoff from your offerings to active projects.",
+        startSub: "3 steps and you're earning.",
+        ctaSub: "Create your profile and publish your first service.",
+      },
+      hiring: {
+        hero: { title: "Launch your AI workforce.", sub: "Discover AI builders and agent teams. Post work and kick off fast." },
+        featuresTitle: "Everything you need for faster hiring",
+        featuresSub: "Evaluate, contract, and pay in one flow — no context switching.",
+        startSub: "3 steps to get work done.",
+        ctaSub: "Spin up a project workspace and invite your team.",
+      }
+    };
+
+    /* =========================
+       RENDERING HELPERS
+       ========================= */
+    const pillHiring = document.getElementById('pill-hiring');
+    const pillBuilder = document.getElementById('pill-builder');
+    const spotlight = document.getElementById('spotlight');
+    const featuresGrid = document.getElementById('features-grid');
+    const featuresTitle = document.getElementById('features-title');
+    const featuresSubline = document.getElementById('features-sub');
+    const stepsGrid = document.getElementById('steps-grid');
+    const kickstartSub = document.getElementById('kickstart-sub');
+    const headline = document.getElementById('headline');
+    const subline = document.getElementById('subline');
+    const ctaHeadline = document.getElementById('cta-headline');
+    const ctaSub = document.getElementById('cta-sub');
+
+    // Image mapping for Primary features (spotlight)
+    const spotlightImages = {
+      "Sell services & agent teams": "https://i.imgur.com/kSE2The.png",
+      "Get work / gigs": "https://i.imgur.com/ZOxKIq1.png",
+      "Discover and hire builders": "https://i.imgur.com/ZOxKIq1.png",
+      "Discover and hire teams": "https://i.imgur.com/ZOxKIq1.png"
+    };
+
+    function imageBoxFor(title){
+      const wrap = h('div','img-wrap');
+      // Reserve space before image loads; corrected to natural aspect on load
+      wrap.style.aspectRatio = '16/9';
+      const url = spotlightImages[title] || '';
+      const img = h('img','',{ src:url, alt:title });
+      img.addEventListener('load', ()=>{
+        if(img.naturalWidth && img.naturalHeight){
+          wrap.style.aspectRatio = `${img.naturalWidth}/${img.naturalHeight}`;
+        }
+      });
+      wrap.appendChild(img);
+      return wrap;
+    }
+
+    // Dashboard
+    const dashboard = document.getElementById('dashboard');
+    const dashContent = document.getElementById('dashContent');
+    const projectList = document.getElementById('projectList');
+
+    const tabInbox = document.getElementById('tab-inbox');
+    const tabContracts = document.getElementById('tab-contracts');
+        const tabPayments = document.getElementById('tab-payments');
+
+    const h = (tag, cls = '', attrs = {}) => { const el = document.createElement(tag); if(cls) el.className = cls; Object.entries(attrs).forEach(([k,v])=> el.setAttribute(k,v)); return el; };
+
+    function iconSquare(name){
+      const wrap = h('div', 'icon-square');
+      const i = h('i', '', { 'data-lucide': name });
+      i.classList.add('w-5','h-5');
+      wrap.appendChild(i);
+      return wrap;
+    }
+
+    function spotlightCard({title, blurb, icon}){
+      const card = h('div', 'flex flex-col gap-3 rounded-xl p-4 panel spotlight-card');
+      const row = h('div', 'flex items-center gap-2 justify-start');
+      row.appendChild(iconSquare(icon));
+      const h3 = h('h3', 'ap-heading spotlight-title font-normal'); h3.style.color = 'var(--HEADING)'; h3.textContent = title;
+      row.appendChild(h3);
+      const imgWrap = imageBoxFor(title);
+      const p = h('p', 'text-sm'); p.style.color = 'var(--BODY)'; p.textContent = blurb;
+      card.append(row, imgWrap, p);
+      return card;
+    }
+
+    function featureCard({title, description, icon}){
+      const card = h('div', 'panel rounded-xl p-4 transition');
+      const top = h('div', 'mb-3 flex items-center gap-2 justify-start');
+      top.style.color = 'var(--HEADING)';
+      top.appendChild(iconSquare(icon));
+      const titleEl = h('h3', 'text-sm ap-heading font-normal');
+      titleEl.style.color = 'var(--HEADING)';
+      titleEl.textContent = title;
+      top.appendChild(titleEl);
+      const body = h('p', 'text-sm');
+      body.style.color = 'var(--BODY)';
+      body.textContent = description;
+      card.append(top, body);
+      return card;
+    }
+
+    function stepCard({title, body, icon}, idx){
+      const card = h('div', 'panel rounded-xl p-4');
+      const row = h('div', 'mb-2 flex items-center gap-2 justify-start');
+      row.appendChild(iconSquare(icon));
+      const step = h('span', 'text-xs');
+      step.style.color = 'var(--BODY)';
+      step.textContent = `Step ${idx}`;
+      row.appendChild(step);
+      const h4 = h('h4', 'mb-1 text-sm ap-heading font-normal');
+      h4.style.color = 'var(--HEADING)';
+      h4.textContent = title;
+      const p = h('p', 'text-sm');
+      p.style.color = 'var(--BODY)';
+      p.textContent = body;
+      card.append(row, h4, p);
+      return card;
+    }
+
+    function renderSpotlight(){
+      spotlight.innerHTML='';
+      const list = (mode==='hiring') ? spotlightHiring : spotlightBuilder;
+      list.forEach(item=> spotlight.appendChild(spotlightCard(item)) );
+      lucide.createIcons();
+    }
+
+    function renderFeatures(){
+      featuresGrid.innerHTML='';
+      const list = (mode==='hiring') ? featuresHiring : featuresBuilder;
+      featuresTitle.textContent = copy[mode].featuresTitle;
+      featuresSubline.textContent = copy[mode].featuresSub;
+      list.forEach(f=> featuresGrid.appendChild(featureCard(f)) );
+      lucide.createIcons();
+    }
+
+    function renderSteps(){
+      stepsGrid.innerHTML='';
+      const list = (mode==='hiring') ? stepsHiring : stepsBuilder;
+      kickstartSub.textContent = copy[mode].startSub;
+      list.forEach((s,i)=> stepsGrid.appendChild(stepCard(s, i+1)) );
+      lucide.createIcons();
+    }
+
+    // Dashboard data
+    const seed = {
+      builder: {
+        projects: [
+          { id:'p1', name:'Agent storefront revamp', unread:2 },
+          { id:'p2', name:'Workflow bot setup', unread:0 },
+          { id:'p3', name:'RAG prototype', unread:1 }
+        ],
+        inbox: [
+          { from:'Ava (ACME Co.)', text:'Can you scope the onboarding flow?', time:'2m' },
+          { from:'Liam (Nova Labs)', text:'Approved milestone 1. Payout queued.', time:'1h' },
+          { from:'Maya (Ventures)', text:'Can you share timeline options?', time:'3h' }
+        ],
+        contracts: [
+          { title:'SOW — ACME storefront', status:'Signed', value:'$8,400' },
+          { title:'NDA — Nova Labs', status:'Signed', value:'—' },
+          { title:'MSA — Orbit Inc.', status:'Signed', value:'—' }
+        ],
+        payments: [
+          { title:'Payout — M1', amount:'$2,800', status:'Sent' },
+          { title:'Deposit — ACME', amount:'$1,000', status:'Escrow' },
+          { title:'M2 payout', amount:'$3,200', status:'Pending' }
+        ]
+      },
+      hiring: {
+        projects: [
+          { id:'h1', name:'Lead routing assistant', unread:3 },
+          { id:'h2', name:'Data QA agent', unread:0 }
+        ],
+        inbox: [
+          { from:'Sophia (Builder)', text:'Shared quick loom with the approach.', time:'10m' },
+          { from:'Dion (Team)', text:'Proposal v2 attached for review.', time:'2h' },
+          { from:'Ravi (PM)', text:'Let’s align on deliverables Mon/Tue.', time:'5h' }
+        ],
+        contracts: [
+          { title:'MSA — Builder Collective', status:'Awaiting signature', value:'—' },
+          { title:'SOW — Lead routing', status:'Draft', value:'$12,000' },
+          { title:'NDA — Alpha Builders', status:'Signed', value:'—' }
+        ],
+        payments: [
+          { title:'Initial deposit', amount:'$3,600', status:'Escrow' },
+          { title:'M1 payout', amount:'$3,600', status:'Queued' },
+          { title:'Final payment', amount:'$4,800', status:'Pending' }
+        ]
+      }
+    };
+
+    function renderProjects(){
+      projectList.innerHTML = '';
+      seed[mode].projects.forEach(p=>{
+        const row = h('button','w-full text-left panel rounded-md px-3 py-2 hover:bg-[#20262D] flex items-center justify-between');
+        row.innerHTML = `<span class="text-xs" style="color:var(--HEADING)">${p.name}</span>` + (p.unread? `<span class="text-[10px] px-1.5 py-0.5 rounded-full" style="background:var(--ACCENT); color:#0B1620">${p.unread}</span>`: '');
+        projectList.appendChild(row);
+      });
+    }
+
+    function dashRow(primary, secondary){
+      const row = h('div','flex items-center justify-between rounded-md border px-3 py-2');
+      row.style.borderColor = 'var(--BORDER)';
+      const a = h('div','text-xs'); a.style.color = 'var(--HEADING)'; a.textContent = primary;
+      const b = h('div','text-[11px]'); b.style.color = 'var(--BODY)'; b.textContent = secondary;
+      row.append(a,b);
+      return row;
+    }
+
+    function renderDash(section){
+      dashContent.innerHTML = '';
+      const data = seed[mode][section];
+      if(section==='inbox'){
+        data.forEach(m=> dashContent.appendChild(dashRow(`${m.from}`, `${m.text} • ${m.time} ago`)));
+      } else if(section==='contracts'){
+        data.forEach(c=> dashContent.appendChild(dashRow(`${c.title}`, `${c.status} • ${c.value}`)));
+      } else if(section==='payments'){
+        data.forEach(p=> dashContent.appendChild(dashRow(`${p.title}`, `${p.status} • ${p.amount}`)));
+      }
+    }
+
+    function wireDashboard(){
+      renderProjects();
+      renderDash('inbox');
+      [tabInbox, tabContracts, tabPayments].forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          [tabInbox, tabContracts, tabPayments].forEach(b=> b.classList.remove('active'));
+          btn.classList.add('active');
+          const key = btn.id.replace('tab-','');
+          renderDash(key);
+        });
+      });
+    }
+
+    function syncCopy(){
+      headline.textContent = copy[mode].hero.title;
+      subline.textContent = copy[mode].hero.sub;
+      ctaHeadline.textContent = copy[mode].hero.title;
+      ctaSub.textContent = copy[mode].ctaSub;
+    }
+
+    function setMode(next){
+      mode = next;
+      pillBuilder.classList.toggle('active', mode==='builder');
+      pillHiring.classList.toggle('active', mode==='hiring');
+      syncCopy();
+      renderSpotlight();
+      renderFeatures();
+      renderSteps();
+      wireDashboard();
+      lucide.createIcons();
+    }
+
+    // Toggle
+    pillHiring.addEventListener('click', ()=> setMode('hiring'));
+    pillBuilder.addEventListener('click', ()=> setMode('builder'));
+
+    // Initial render
+    let mode = 'builder';
+    setMode('builder');
+
+    // Icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>
