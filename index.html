@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AgentPowered — Static Landing</title>
+  <title>AgentPowered — Static Landing (Hero v2)</title>
   <!-- Tailwind CDN for utility classes -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root{
-      /* Specified palette */
       --ACCENT:#03FFB2;        /* Highlight green */
       --BG:#191E25;            /* Background */
       --PANEL:#1D232A;         /* Overlay */
@@ -34,8 +33,11 @@
     .ap-pill:hover{background:rgba(255,255,255,0.04)}
     .ap-pill.active{background:var(--ACCENT); color:#0B1620; border:none}
 
-    /* Little label above toggle */
+    /* Tag + Liquid Glass effect */
     .ap-tag{display:inline-block; font-size:.9rem; color:#DDE5EB; background:var(--PANEL); border:1px solid #767676; border-radius:8px; padding:.25rem .6rem}
+    .ap-liquid{position:relative; overflow:hidden; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.16); color:#DDE5EB; backdrop-filter: blur(10px) saturate(140%); -webkit-backdrop-filter: blur(10px) saturate(140%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.04), 0 0 24px rgba(3,255,178,.06)}
+    .ap-liquid::before{content:""; position:absolute; inset:-40%; background:radial-gradient(60% 80% at 20% 30%, rgba(3,255,178,.35), transparent 60%), radial-gradient(60% 80% at 80% 70%, rgba(3,255,178,.25), transparent 60%); filter:blur(16px); animation:liquidShift 8s ease-in-out infinite alternate}
+    @keyframes liquidShift{ from{ transform: translateX(-6%) translateY(-4%) rotate(0deg) } to{ transform: translateX(6%) translateY(4%) rotate(180deg) } }
 
     /* Spotlight sizing */
     .spotlight-card{ height:auto }
@@ -47,17 +49,47 @@
     /* Icon square */
     .icon-square{display:grid; place-items:center; width:2rem; height:2rem; border:1px solid var(--BORDER); border-radius:.5rem; color:var(--ACCENT); background:var(--PANEL)}
 
-    /* Ensure logo stays perfectly square */
-    .logo{aspect-ratio:1/1; object-fit:contain; display:inline-block}
-
     /* Navbar blur */
     .nav-blur{backdrop-filter:saturate(120%) blur(8px); background:rgba(25,30,37,.65)}
-      /* Spotlight image wrapper */
+
+    /* Spotlight image wrapper */
     .img-wrap{ position:relative; width:100%; border:1px solid var(--BORDER); border-radius:.5rem; overflow:hidden }
     .img-wrap img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover }
 
     /* Override default spotlight sizing to fit image */
     .spotlight-card{ height:auto !important; display:flex; flex-direction:column; gap:.75rem }
+
+    /* =============================
+       HERO PRODUCT VIEW (updated)
+       ============================= */
+    .hero-product{ position:relative; width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; background:var(--PANEL); border:1px solid var(--BORDER);
+      /* Fade the ENTIRE box from 100% opacity at top to 0% at bottom */
+      -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+    }
+    .hero-product img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; z-index:1 }
+
+    /* New anchored shimmer line INSIDE image box */
+    .hero-product::before{ content:""; position:absolute; left:0; right:0; top:0; height:2px; 
+  /* Brightest at center, zero at edges */
+  background:linear-gradient(90deg, rgba(3,255,178,0) 0%, rgba(3,255,178,.9) 50%, rgba(3,255,178,0) 100%);
+  background-size:200% 100%;
+  animation:heroShimmer 6s linear infinite;
+  /* Fixed edge fade so poles are always 0 regardless of animation */
+  -webkit-mask-image:linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%);
+  mask-image:linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%);
+  box-shadow:0 0 10px rgba(3,255,178,.35), 0 0 18px rgba(3,255,178,.18);
+  pointer-events:none; z-index:3 
+}
+    /* Soft halo just above the line inside the box */
+    .hero-product::after{ content:""; position:absolute; top:-12px; left:-10%; width:120%; height:24px; background:radial-gradient(50% 100% at 50% 0, rgba(3,255,178,.35), rgba(3,255,178,0)); pointer-events:none; filter:blur(8px); z-index:2 }
+
+    /* Keep a separate FLOATING shimmer line in the hero area with lower opacity */
+    .hero-floating-line{ position:absolute; left:0; right:0; top:5.5rem; height:2px; background:linear-gradient(90deg, rgba(3,255,178,0) 0%, rgba(3,255,178,.9) 15%, rgba(3,255,178,1) 50%, rgba(3,255,178,.9) 85%, rgba(3,255,178,0) 100%); background-size:200% 100%; animation:heroShimmer 8s linear infinite; opacity:.22; filter:blur(.2px); pointer-events:none }
+
+    @keyframes heroShimmer{ 0%{ background-position:200% 0 } 100%{ background-position:-200% 0 } }
+      /* Gradient text for hero headline */
+    .headline-gradient{ background: linear-gradient(to bottom, #FFFFFF 0%, #999999 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; }
   </style>
 </head>
 <body>
@@ -65,7 +97,7 @@
   <div class="fixed top-0 left-0 right-0 z-50 nav-blur border-b" style="border-color:var(--BORDER)">
     <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 flex h-14 items-center justify-between">
       <a href="#" class="flex items-center gap-2">
-        <img src="https://framerusercontent.com/assets/paDh48hPnfMJWRqktvJeAU446M.png" alt="AgentPowered Logo" class="logo w-5 h-5"/>
+        <img src="https://framerusercontent.com/assets/paDh48hPnfMJWRqktvJeAU446M.png" alt="AgentPowered Logo" class="w-5 h-5"/>
         <span class="ap-heading text-base font-semibold tracking-tight" style="color:var(--HEADING)">AgentPowered</span>
       </a>
       <div class="flex items-center gap-2">
@@ -77,21 +109,29 @@
 
   <!-- HERO -->
   <section class="relative overflow-hidden pt-16">
-    <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative flex flex-col items-center gap-4 py-12 text-center md:py-16">
-      <!-- Label above toggle -->
-      <div class="ap-tag">The Agentic Marketplace</div>
+    <!-- floating shimmer line with low opacity -->
+<div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative flex flex-col items-center gap-4 py-12 text-center md:py-16">
+      <!-- Tag above toggle with liquid style -->
+      <div class="ap-tag ap-liquid">The Agentic Marketplace</div>
+
       <!-- Toggle -->
       <div class="flex items-center gap-1 rounded-full p-1 panel">
         <button id="pill-builder" class="ap-pill active">I'm a builder</button>
         <button id="pill-hiring" class="ap-pill">I'm hiring</button>
       </div>
 
-      <h1 id="headline" class="ap-heading max-w-3xl text-4xl sm:text-5xl font-normal leading-tight tracking-tight" style="color:var(--HEADING)">Turn agent teams into a business.</h1>
+      <!-- Larger headline in a fixed 500px box -->
+      <h1 id="headline" class="ap-heading font-normal leading-[1.05] tracking-tight text-5xl sm:text-7xl md:text-8xl w-[1000px] max-w-full mx-auto headline-gradient pb-[10px]" style="-webkit-text-fill-color:transparent; color:transparent;">Turn your agent teams into a business.</h1>
 
       <p id="subline" class="max-w-2xl text-base sm:text-lg" style="color:var(--BODY)">Build. Launch. Monetize. All on one platform.</p>
 
       <div class="flex items-center justify-center gap-3">
         <a href="#signup" class="ap-solid-btn">Sign up</a>
+      </div>
+
+      <!-- HERO PRODUCT: product view image with box-fade + anchored shimmer -->
+      <div class="hero-product mt-6">
+        <img src="https://i.imgur.com/mzk964D.png" alt="Product view mock" loading="eager" />
       </div>
     </div>
   </section>
@@ -103,7 +143,6 @@
     <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
       <div class="mb-6 text-center">
         <h2 id="primary-title" class="ap-heading text-3xl sm:text-4xl font-normal" style="color:var(--HEADING)">The platform that helps you build, scale, and monetize your agent teams.</h2>
-        <!-- NEW short description under the section title -->
         <p id="primary-desc" class="mt-2 text-sm max-w-2xl mx-auto" style="color:var(--BODY)">End‑to‑end on one unified platform—profiles, listings, contracts, and payouts.</p>
       </div>
       <div id="spotlight" class="grid gap-4 md:grid-cols-3"></div>
@@ -146,13 +185,11 @@
         <p class="mt-1 text-sm" style="color:var(--BODY)">A streamlined dashboard for chat, contracts, and payouts.</p>
       </div>
       <div id="dashboard" class="panel rounded-xl p-0 overflow-hidden">
-        <!-- Tabs -->
         <div class="flex items-center gap-2 border-b px-3 py-2" style="border-color:var(--BORDER)">
           <button class="ap-pill active" id="tab-inbox" style="min-width:auto">Inbox</button>
           <button class="ap-pill" id="tab-contracts" style="min-width:auto">Contracts</button>
           <button class="ap-pill" id="tab-payments" style="min-width:auto">Payments</button>
         </div>
-        <!-- Body -->
         <div class="grid md:grid-cols-3">
           <aside class="border-r p-3" style="border-color:var(--BORDER)">
             <h4 class="ap-heading text-sm font-normal mb-2" style="color:var(--HEADING)">Projects</h4>
@@ -169,7 +206,7 @@
   <!-- CTA FOOTER -->
   <section class="py-12 md:py-16">
     <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 text-center">
-      <h3 id="cta-headline" class="ap-heading text-xl font-normal" style="color:var(--HEADING)">Turn agent teams into a business.</h3>
+      <h3 id="cta-headline" class="ap-heading text-xl font-normal" style="color:var(--HEADING)">Turn your agent teams into a business.</h3>
       <p id="cta-sub" class="mt-1 text-sm" style="color:var(--BODY)"></p>
       <div class="mt-4 flex items-center justify-center gap-3">
         <a href="#signup" class="ap-solid-btn">Sign up</a>
@@ -177,13 +214,13 @@
     </div>
   </section>
 
-  <!-- FOOTER (with links) -->
+  <!-- FOOTER -->
   <footer class="pb-14 pt-8">
     <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
       <div class="hairline"></div>
       <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-xs" style="color:var(--BODY)">
         <div class="flex items-center gap-2">
-          <img src="https://framerusercontent.com/assets/paDh48hPnfMJWRqktvJeAU446M.png" alt="AgentPowered Logo" class="logo w-5 h-5"/>
+          <img src="https://framerusercontent.com/assets/paDh48hPnfMJWRqktvJeAU446M.png" alt="AgentPowered Logo" class="w-5 h-5"/>
           <span class="ap-heading text-base font-semibold" style="color:var(--HEADING)">AgentPowered</span>
         </div>
         <nav class="flex items-center gap-4">
@@ -239,7 +276,7 @@
 
     const copy = {
       builder: {
-        hero: { title: "Turn agent teams into a business.", sub: "Build. Launch. Monetize. All on one platform." },
+        hero: { title: "Turn your agent teams into a business.", sub: "Build. Launch. Monetize. All on one platform." },
         primaryTitle: "The platform that helps you build, scale, and monetize your agent teams",
         primaryDesc: "End‑to‑end on one unified platform—profiles, listings, contracts, and payouts.",
         featuresTitle: "Do more with less overhead",
@@ -278,9 +315,9 @@
 
     // Image mapping for Primary features (spotlight)
     const spotlightImages = {
-      "Build & Launch": "https://i.imgur.com/BROkECA.png",
-      "Market & Grow": "https://i.imgur.com/CIDy9FR.png",
-      "Manage & Monetize": "https://i.imgur.com/51eXNRp.png",
+      "Build & Launch": "https://i.imgur.com/E2of8Fv.png",
+      "Market & Grow": "https://i.imgur.com/jdBGG16.png",
+      "Manage & Monetize": "https://i.imgur.com/1DE9Ici.png",
       "Discover Solutions": "https://i.imgur.com/BROkECA.png",
       "Hire Expert Builders": "https://i.imgur.com/CQ35lPe.png",
       "Seamless Management": "https://i.imgur.com/mjUT2x2.png"
@@ -288,7 +325,6 @@
 
     function imageBoxFor(title){
       const wrap = h('div','img-wrap');
-      // Reserve space before image loads; corrected to natural aspect on load
       wrap.style.aspectRatio = '16/9';
       const url = spotlightImages[title] || '';
       const img = h('img','',{ src:url, alt:title });
@@ -301,7 +337,6 @@
       return wrap;
     }
 
-    // Dashboard
     const dashboard = document.getElementById('dashboard');
     const dashContent = document.getElementById('dashContent');
     const projectList = document.getElementById('projectList');
@@ -395,7 +430,7 @@
       primaryDesc.textContent = copy[mode].primaryDesc;
     }
 
-    // Dashboard data (demo)
+    // Dashboard demo data
     const seed = {
       builder: {
         projects: [
